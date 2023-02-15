@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/9c0aa20d-1ff4-44ed-b085-4f95ac088cfd/appservices/subscriptions/9c0aa20d-1ff4-44ed-b085-4f95ac088cfd/resourceGroups/bybitserver/providers/Microsoft.Web/sites/bybitserver",
+    "appService.deploySubpath": "."
+}
