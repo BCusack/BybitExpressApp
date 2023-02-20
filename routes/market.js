@@ -52,6 +52,7 @@ async function get_data(req) {
     return candles_collection;
 }
 
+// TODO: UTC timestamp for safe time calculation
 function get_daily_candle(candles) {
     const current_time_utc = new Date(new Date().setHours(11, 0, 0, 0))
     let current_day_utc = new Date(Math.floor(current_time_utc / 86400000) * 86400000);
