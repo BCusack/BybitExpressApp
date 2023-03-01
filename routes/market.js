@@ -2,10 +2,16 @@ var express = require('express');
 var router = express.Router();
 var axios = require('axios');
 
+let data = null;
+
+
+
+setInterval(get_data, 5000);
+
 /* GET home page. */
 router.get('/', async (req, res) => {
     try {
-        return res.json(await get_data(req));
+        return res.json(data);
     } catch (error) {
         console.error(error);
         return res.status(500).send('Server Error');
@@ -28,10 +34,10 @@ module.exports = router;
  * @param {request} req
  * @returns response data
  */
-async function get_data(req) {
-    let data = req.body;
-    let period = data.period || 15;
-    let count = data.count || 25;
+
+async function get_data() {
+    let period = 15;
+    let count = 25;
     let start_time = Math.round(Date.now() / 1000);
     let end_time = (start_time - (count * 60 * 60)).toString();
     let start_str = start_time.toString();
@@ -49,7 +55,7 @@ async function get_data(req) {
         candles_collection.sort((a, b) => b.abs_change - a.abs_change);
     });
 
-    return candles_collection;
+    data = candles_collection;
 }
 
 // TODO: UTC timestamp for safe time calculation
